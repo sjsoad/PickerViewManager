@@ -1,0 +1,104 @@
+{\rtf1\ansi\ansicpg1251\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red178\green24\blue137;\red30\green32\blue40;\red255\green255\blue255;
+\red131\green192\blue87;\red0\green160\blue190;\red120\green109\blue196;}
+{\*\expandedcolortbl;;\csgenericrgb\c69800\c9500\c53600;\csgenericrgb\c11800\c12500\c15700;\csgenericrgb\c100000\c100000\c100000;
+\csgenericrgb\c51200\c75400\c34300;\csgenericrgb\c0\c62600\c74600;\csgenericrgb\c46900\c42600\c77000;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Example:\
+\
+1. Create PickerManager\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf2 \cb3 lazy\cf4  \cf2 var\cf4  agePickerManager: \cf5 PickerManager\cf4  = \{
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf2 let\cf4  ageArray = \cf5 AgeRange\cf4 .\cf5 range\cf4 ()
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf2 var\cf4  components = [\cf5 PickerComponentObject\cf4 ]()
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf2 var\cf4  componentObjects = [\cf5 PickerRowObject\cf4 ]()
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf2 for\cf4  age \cf2 in\cf4  ageArray \{
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4             \cf2 let\cf4  rowObject = \cf5 PickerRowObject\cf4 (title: \cf6 String\cf4 (describing: age))
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4             componentObjects.\cf6 append\cf4 (rowObject)
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \}
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf2 let\cf4  componentObject = \cf5 PickerComponentObject\cf4 (items: componentObjects)
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         components.\cf6 append\cf4 (componentObject)
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf2 let\cf4  pickerConfigurator = \cf5 PickerDataSourceConfigurator\cf4 (components: components)
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf2 let\cf4  pickerManager = \cf5 PickerManager\cf4 (configuration: pickerConfigurator) \{ [weak \cf2 self\cf4 ] (\cf2 _\cf4 , \cf2 _\cf4 , row) \cf2 in
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4             \cf2 guard\cf4  \cf2 let\cf4  strongSelf = \cf2 self\cf4  \cf2 else\cf4  \{ \cf2 return\cf4  \}
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4             \cf2 let\cf4  ageValue = ageArray[row]
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4             strongSelf.\cf5 view\cf4 ?.\cf5 set\cf4 (ageString: \cf5 AgeRepresentationHelper\cf4 .\cf5 string\cf4 (forAge: ageValue))
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \}
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf2 return\cf4  pickerManager
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4     \}()
+\f0\fs24 \cf0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+2. Set selected indexes if needed\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf2 \cb3 func\cf4  setupPickerManager(withAge age: \cf6 Int\cf4 ) \{
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf2 let\cf4  index = \cf5 AgeRange\cf4 .\cf5 range\cf4 ().\cf6 index\cf4 (of: age) ?? \cf7 \cb3 0
+\f0\fs24 \cf0 \cb3 \
+
+\f1\fs22 \cf4         \cf2 let\cf4  indexPath = \cf6 IndexPath\cf4 (row: index, section: \cf7 \cb3 0\cf4 \cb3 )
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf5 agePickerManager\cf4 .\cf5 set\cf4 (selectedIndexes: [indexPath])
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4     \}
+\f0\fs24 \cf0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+3. Set PickerManager toPickerViewField\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf4 \cb3     \cf2 func\cf4  set(agePickerManager manager: \cf5 PickerManager\cf4 ) \{
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4         \cf5 ageField\cf4 .\cf5 reload\cf4 (with: manager)
+\f0\fs24 \cf0 \
+
+\f1\fs22 \cf4     \}}
