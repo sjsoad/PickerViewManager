@@ -17,7 +17,7 @@ public protocol PickerRow {
 
 open class PickerComponentObject: NSObject {
     
-    var items: [PickerRow] = [PickerRow]()
+    public var items: [PickerRow] = [PickerRow]()
     
     public init(items: [PickerRow]) {
         self.items = items
@@ -27,8 +27,8 @@ open class PickerComponentObject: NSObject {
 
 open class PickerRowObject: NSObject, PickerRow {
 
-    private(set) public var title: String?
-    private(set) public var attributedTitle: NSAttributedString?
+    public private(set) var title: String?
+    public private(set) var attributedTitle: NSAttributedString?
 
     public init(title: String? = nil,
          attributedTitle: NSAttributedString? = nil) {
@@ -40,7 +40,7 @@ open class PickerRowObject: NSObject, PickerRow {
 
 open class PickerDataSourceConfigurator {
 
-    var components: [PickerComponentObject] = [PickerComponentObject]()
+    public var components: [PickerComponentObject] = [PickerComponentObject]()
 
     public init(components: [PickerComponentObject]) {
         self.components = components
@@ -55,7 +55,8 @@ open class PickerManager: NSObject, UIPickerViewDataSource, UIPickerViewDelegate
 
     private var configuration: PickerDataSourceConfigurator!
     private var handler: PickerManagerSelectionHandler?
-    private(set) public var selectedIndexes = [IndexPath]()
+    
+    public private(set) var selectedIndexes = [IndexPath]()
     
     public var selectionSettingHandler: PickerManagerSelectionSettingHandler?
     
