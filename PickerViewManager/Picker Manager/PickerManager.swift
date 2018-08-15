@@ -99,9 +99,7 @@ open class PickerManager: NSObject, UIPickerViewDataSource, UIPickerViewDelegate
         guard itemExistsIn(component: component, at: row) else { return }
         let rowObject = configuration.components[component].items[row]
         let selectedIndex = IndexPath(row: row, section: component)
-        if let indexPath = selectedIndexes.filter({ (indexPath) -> Bool in
-            return indexPath.section == component
-        }).first, let index = selectedIndexes.index(of: indexPath) {
+        if let indexPath = selectedIndexes.first(where: { $0.section == component }), let index = selectedIndexes.index(of: indexPath) {
             selectedIndexes[index] = selectedIndex
         } else {
             selectedIndexes.append(selectedIndex)
