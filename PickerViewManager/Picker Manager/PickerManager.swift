@@ -15,25 +15,24 @@ public protocol PickerRow {
     
 }
 
-open class PickerComponentObject: NSObject {
+open class PickerRowObject: NSObject, PickerRow {
     
-    public var items: [PickerRow] = [PickerRow]()
+    public let title: String?
+    public let attributedTitle: NSAttributedString?
     
-    public init(items: [PickerRow]) {
-        self.items = items
+    public init(title: String? = nil, attributedTitle: NSAttributedString? = nil) {
+        self.title = title
+        self.attributedTitle = attributedTitle
     }
     
 }
 
-open class PickerRowObject: NSObject, PickerRow {
+open class PickerComponentObject: NSObject {
+    
+    public let items: [PickerRow]
 
-    public private(set) var title: String?
-    public private(set) var attributedTitle: NSAttributedString?
-
-    public init(title: String? = nil,
-         attributedTitle: NSAttributedString? = nil) {
-        self.title = title
-        self.attributedTitle = attributedTitle
+    public init(items: [PickerRow]) {
+        self.items = items
     }
     
 }
