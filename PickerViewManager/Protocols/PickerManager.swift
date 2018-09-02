@@ -9,4 +9,6 @@ import Foundation
 
 public protocol PickerManager: UIPickerViewDataSource, UIPickerViewDelegate {
     
+    var selectedIndexes: [IndexPath] { get }
+    
 }

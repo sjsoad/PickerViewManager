@@ -10,23 +10,14 @@ import UIKit
 
 open class DefaultPickerManager: NSObject, PickerManager {
 
-    private var configuration: PickerDataSourceConfigurable
-    private var handler: PickerManagerSelectionHandler?
+    private let configuration: PickerDataSourceConfigurable
+    private let handler: PickerManagerSelectionHandler?
     
     public private(set) var selectedIndexes = [IndexPath]()
-    
-    public var selectionSettingHandler: PickerManagerSelectionSettingHandler?
     
     public init(configuration: PickerDataSourceConfigurable, selectionHandler: PickerManagerSelectionHandler? = nil) {
         self.configuration = configuration
         self.handler = selectionHandler
-    }
-    
-    // MARK: - Setter -
-    
-    public func set(selectedIndexes: [IndexPath]) {
-        self.selectedIndexes = selectedIndexes
-        selectionSettingHandler?(selectedIndexes)
     }
     
     // MARK: - UIPickerViewDataSource -
