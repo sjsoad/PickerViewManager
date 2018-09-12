@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PickerDataSourceConfigurator: PickerDataSourceConfigurable {
+public class PickerDataSourceConfigurator: PickerDataSourceConfigurable {
     
     public let components: [PickerComponent]
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PickerComponentObject: PickerComponent {
+public class PickerComponentObject: PickerComponent {
     
     public let items: [PickerRow]
     
