@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PickerRowObject: PickerRow {
+public class PickerRowObject: PickerRow {
     
     public let title: String?
     public let attributedTitle: NSAttributedString?
