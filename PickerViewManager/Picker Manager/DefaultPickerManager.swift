@@ -13,7 +13,7 @@ open class DefaultPickerManager: NSObject, PickerManager {
     private let configuration: PickerDataSourceConfigurable
     private let handler: PickerManagerSelectionHandler?
     
-    public private(set) var selectedIndexes = [IndexPath]()
+    open var selectedIndexes = [IndexPath]()
     
     public init(configuration: PickerDataSourceConfigurable, selectionHandler: PickerManagerSelectionHandler? = nil) {
         self.configuration = configuration
